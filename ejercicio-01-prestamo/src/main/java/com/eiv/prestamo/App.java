@@ -11,7 +11,9 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.eiv.prestamo.PrestamoDatos.SistemaAmortizacionEnum;
 import com.eiv.prestamo.metodos.Metodo;
+import com.eiv.prestamo.metodos.MetodoAlemanImpl;
 import com.eiv.prestamo.metodos.MetodoFrancesImpl;
 
 public class App {
@@ -64,7 +66,14 @@ public class App {
             System.out.println("Ingrese tasa nominal anual: ");
             BigDecimal tna = scanner.nextBigDecimal();
             
-            PrestamoDatos prestamoDatos = new PrestamoDatos(capital, cuotas, tna);
+            System.out.println("Ingrese sistema de amortización: 1) Frances (default) - 2) ALEMAN");
+            Integer sistemaAmortOp = scanner.nextInt();
+            
+            SistemaAmortizacionEnum sistemaAmortizacionEnum =
+                    SistemaAmortizacionEnum.of(sistemaAmortOp);
+                        
+            PrestamoDatos prestamoDatos = new PrestamoDatos(
+                    capital, cuotas, tna, sistemaAmortizacionEnum);
             PrestamoDatos.esValido(prestamoDatos);
             
             return Optional.of(prestamoDatos);
@@ -120,7 +129,10 @@ public class App {
     
     public BigDecimal calculoValorCuota(PrestamoDatos prestamoDatos) {
         
-        Metodo metodo = new MetodoFrancesImpl();
+        Metodo metodo = prestamoDatos.getSistemaAmortizacion().equals(
+                SistemaAmortizacionEnum.SISTEMA_FRANCES)
+                ? new MetodoFrancesImpl() : new MetodoAlemanImpl();
+        
         return metodo.calculoValorCuota(prestamoDatos);
     }
 }
