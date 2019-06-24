@@ -11,7 +11,7 @@ public class PrestamoDatos {
         SISTEMA_ALEMAN;
         
         public static SistemaAmortizacionEnum of(Integer value) {
-            if(value==null) {
+            if (value == null) {
                 return SISTEMA_FRANCES;
             }
             
