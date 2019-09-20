@@ -57,7 +57,7 @@ public class RaizTest {
         
         Raiz raiz = new Raiz(polinomio);
         BigDecimal resultado = raiz.calcular(
-                BigDecimal.ONE, 
+                BigDecimal.ONE.add(BigDecimal.valueOf(0.00001)), 
                 BigDecimal.ONE.add(BigDecimal.ONE));
                 
         assertThat(resultado, BigDecimalCloseTo.closeTo(
@@ -77,7 +77,7 @@ public class RaizTest {
         
         Raiz raiz = new Raiz(polinomio);
         BigDecimal resultado = raiz.calcular(
-                BigDecimal.ONE, 
+                BigDecimal.ONE.add(BigDecimal.valueOf(0.00001)), 
                 BigDecimal.ONE.add(BigDecimal.ONE));
                 
         assertThat(resultado, BigDecimalCloseTo.closeTo(

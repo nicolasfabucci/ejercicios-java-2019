@@ -31,7 +31,7 @@ public class CalculadoraTasaTest {
                 .calcular();
         
         BigDecimal teaResultado = calculadoraTasa.getTea();
-        BigDecimal teaEsperada = BigDecimal.valueOf(159.36);
+        BigDecimal teaEsperada = BigDecimal.valueOf(146.5);
 
         assertThat(teaResultado, BigDecimalCloseTo.closeTo(
                 teaEsperada, BigDecimal.valueOf(0.1)));
