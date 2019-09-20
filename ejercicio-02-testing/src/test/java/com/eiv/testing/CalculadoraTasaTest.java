@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CalculadoraTasaTest {
 
     @Test
-    public void whenDatosIniciales_thenTea() {
+    public void whenDatosIniciales1_thenTea() {
         
         CalculadoraTasa calculadoraTasa = new CalculadoraTasa()
                 .datos(100000, 10651.76, 12)
@@ -18,6 +18,20 @@ public class CalculadoraTasaTest {
         
         BigDecimal teaResultado = calculadoraTasa.getTea();
         BigDecimal teaEsperada = BigDecimal.valueOf(60);
+
+        assertThat(teaResultado, BigDecimalCloseTo.closeTo(
+                teaEsperada, BigDecimal.valueOf(0.1)));
+    }
+    
+    @Test
+    public void whenDatosIniciales2_thenTea() {
+        
+        CalculadoraTasa calculadoraTasa = new CalculadoraTasa()
+                .datos(6224.05, 817.71, 12)
+                .calcular();
+        
+        BigDecimal teaResultado = calculadoraTasa.getTea();
+        BigDecimal teaEsperada = BigDecimal.valueOf(159.36);
 
         assertThat(teaResultado, BigDecimalCloseTo.closeTo(
                 teaEsperada, BigDecimal.valueOf(0.1)));
