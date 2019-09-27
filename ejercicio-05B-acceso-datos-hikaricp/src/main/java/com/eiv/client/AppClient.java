@@ -30,7 +30,7 @@ public class AppClient {
         
         LOG.info("Conectando con servidor ...");
         
-        try(Socket socket = new Socket("localhost", 9000);
+        try (Socket socket = new Socket("localhost", 9000);
                 InputStream in = new ByteArrayInputStream(data);
                 OutputStream socketOutputStream = socket.getOutputStream();
                 InputStream socketInputStream = socket.getInputStream()) {

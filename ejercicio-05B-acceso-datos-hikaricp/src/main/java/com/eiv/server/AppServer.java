@@ -30,7 +30,7 @@ public class AppServer {
     
     public void run() throws IOException {
         
-        try(ServerSocket serverSocket = new ServerSocket(9000)) {
+        try (ServerSocket serverSocket = new ServerSocket(9000)) {
             
             LOG.info("Iniciando servidor ...");
             

@@ -39,21 +39,21 @@ public class JdbcTemplate {
     
     public <T extends Serializable> List<T> query(String sql, RowMapper<T> rowMapper) {
         
-        if(connectionProvider == null) {
+        if (connectionProvider == null) {
             LOG.error("JdbcTemplate - Exception: Proveedor de conexiones no disponible!");
             throw new IllegalStateException("Proveedor de conexiones no disponible!");
         }
         
         int rowNum = 0;
         ArrayList<T> result = new ArrayList<T>();
-        try(Connection conn = connectionProvider.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = connectionProvider.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
                 
-                while(rs.next()) {
-                    T t = rowMapper.mapRow(rs, rowNum);
-                    result.add(t);
-                }
+            while (rs.next()) {
+                T t = rowMapper.mapRow(rs, rowNum);
+                result.add(t);
+            }
                 
         } catch (SQLException e) {
             LOG.error("JdbcTemplate - Exception: {}", e.getMessage());

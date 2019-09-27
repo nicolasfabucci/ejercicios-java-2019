@@ -19,7 +19,7 @@ public class ConnectionProviderImpl implements ConnectionProvider {
     
     private void init() {
         
-        if(datasource != null) {
+        if (datasource != null) {
             LOG.info("ConnectionProvider - DataSource ya inicializado, se sale !!");
             return;
         }

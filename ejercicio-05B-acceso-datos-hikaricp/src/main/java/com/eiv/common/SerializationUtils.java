@@ -16,8 +16,7 @@ public class SerializationUtils {
             oos.writeObject(state);
             oos.flush();
             return bos.toByteArray();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -30,11 +29,9 @@ public class SerializationUtils {
             @SuppressWarnings("unchecked")
             T result = (T) oip.readObject();
             return result;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException(e);
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException(e);
         }
     }
