@@ -1,6 +1,9 @@
 package com.eiv;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -15,6 +18,19 @@ public class App {
     private static final String SQL_QUERY_ALT_2 = "select * from personas where tdi_cod = ?";
     
     private static final Logger LOG = LogManager.getLogger(App.class);
+    private static final Properties PROPS;
+    
+    static {
+        
+        InputStream in = App.class.getClassLoader().getResourceAsStream("application.properties");
+        
+        PROPS = new Properties();
+        try {
+            PROPS.load(in);
+        } catch (IOException e) {
+            LOG.error("Archivo de propiedades: {}", e.getMessage());
+        }
+    }
     
     public static void main(String[] args) {
         App app = new App();
@@ -72,10 +88,10 @@ public class App {
         
         SQLServerDataSource ds = new SQLServerDataSource();
         
-        ds.setURL("jdbc:sqlserver://sqlserver\\sql2008");
-        ds.setUser("sa");
-        ds.setPassword("rv760");
-        ds.setDatabaseName("DESARROLLO_MUTUAL");
+        ds.setURL(PROPS.getProperty("datasource.url"));
+        ds.setUser(PROPS.getProperty("datasource.user"));
+        ds.setPassword(PROPS.getProperty("datasource.password"));
+        ds.setDatabaseName(PROPS.getProperty("datasource.database"));
         
         return ds;
     }
