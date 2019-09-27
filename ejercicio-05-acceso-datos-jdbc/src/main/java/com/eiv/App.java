@@ -1,5 +1,8 @@
 package com.eiv;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -22,7 +25,22 @@ public class App {
     
     static {
         
-        InputStream in = App.class.getClassLoader().getResourceAsStream("application.properties");
+        String propsPath = System.getProperty("propsFile");
+        InputStream in = null;
+        
+        if (propsPath == null) {
+            in = App.class.getClassLoader().getResourceAsStream("application.properties");
+        } else {
+            LOG.info("System property: {}", propsPath);
+            File f = new File(propsPath);
+            if (f.exists()) {
+                try {
+                    in = new FileInputStream(f);
+                } catch (FileNotFoundException e) {
+                    LOG.error(e.getMessage());
+                }
+            }
+        }
         
         PROPS = new Properties();
         try {
