@@ -33,7 +33,7 @@ public class CalculadoraTasa {
         
         Raiz raiz = new Raiz(polinomio);
         BigDecimal resultado = raiz.calcular(
-                BigDecimal.ONE.add(BigDecimal.valueOf(0.0001)), 
+                BigDecimal.ONE.add(BigDecimal.valueOf(0.00001)), 
                 BigDecimal.ONE.add(BigDecimal.ONE));
         
         this.razon = resultado.subtract(BigDecimal.ONE);

@@ -1,0 +1,11 @@
+CREATE TABLE provincias (
+	id INT NOT NULL,
+	nombre VARCHAR(200) NOT NULL,
+	PRIMARY KEY(ID)
+);
+
+INSERT INTO provincias VALUES (1, 'SANTA FE');
+INSERT INTO provincias VALUES (2, 'CORDOBA');
+INSERT INTO provincias VALUES (3, 'ENTRE RIOS');
+INSERT INTO provincias VALUES (4, 'CORRIENTES');
+INSERT INTO provincias VALUES (5, 'FORMOSA');
